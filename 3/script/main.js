@@ -10,14 +10,14 @@ window.addEventListener('load', () => {
         cancelButtonText: 'No',
     }).then((result) => {
         if (result.isConfirmed) {
-            document.querySelector('.song').play();
-            animationTimeline();
-        } else {
-            animationTimeline();
+            const audio = document.querySelector('.song');
+            audio.play().catch(error => {
+                console.error('Audio play failed:', error);
+            });
         }
+        animationTimeline(); // jalankan animasi di kedua kondisi
     });
 });
-
 
 // animation timeline
 const animationTimeline = () => {
